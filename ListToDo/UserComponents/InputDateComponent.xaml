@@ -1,0 +1,26 @@
+<UserControl x:Class="ListToDo.InputDateComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Component">
+    
+    <Grid>
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" x:Name="LabelInput" FontSize="16" HorizontalAlignment="Right"
+                   Content="{Binding ElementName=Component, 
+                   Path=LabelText, 
+                   Mode=OneWay, 
+                   UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Column="1" Name="InputDatePicker" 
+                        SelectedDateFormat="Short" 
+                        Margin="10 0" 
+                        Height="22"
+                        MouseDoubleClick="InputDatePicker_OnMouseDoubleClick" 
+                        SelectedDate="{Binding ElementName=Component, Path=DateTask,
+                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        DisplayDate="{Binding ElementName=Component, Path=DateTask,
+                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</UserControl>

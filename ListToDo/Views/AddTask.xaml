@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ListToDo.Views.AddTask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ListToDo"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles.xaml"/>
+    </UserControl.Resources>
+    <StackPanel VerticalAlignment="Top">
+        <TextBlock Text="Новая задача" FontSize="20" Margin="20 10" TextAlignment="Center"/>
+        <local:InputComponent x:Name="NameNewTask" LabelText="Название" Margin="10 5" 
+                              InputText="{Binding Path=InputNameNewTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <local:InputComponent x:Name="DescriptionNewTask" LabelText="Описание" Margin="10 5"
+                              InputText="{Binding InputDescriptionNewTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <local:InputDateComponent x:Name="NewDueDate" LabelText="Дата исполнения " Margin="10 5"
+                              DateTask="{Binding Path=InputDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <local:InputPriorityComponent x:Name="NewPriority" LabelText="Приоритет" Margin="10 5"
+                              PriorityTask="{Binding Path=InputPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Добавить" Command="{Binding Path=AddTaskCommand, Mode=OneTime}"
+                Width="70" Height="20" Margin="0,20,0,0"/>
+    </StackPanel>
+</UserControl>

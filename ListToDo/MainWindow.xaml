@@ -1,0 +1,41 @@
+﻿<Window x:Class="ListToDo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListToDo"
+        xmlns:vm="clr-namespace:ListToDo.ViewModels"
+        mc:Ignorable="d"
+        Title="Список дел" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles.xaml"/>
+    </Window.Resources>
+        <Window.DataContext>
+            <vm:MainWindowViewModel/>
+        </Window.DataContext>
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="180" MaxWidth="210"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" Background="#f8fbf0">
+            <Button Command="{Binding LoadAddTaskCommand, Mode=OneTime}"
+                    Content="Добавить дело"
+                    Style="{StaticResource BtnLightGreen}"/>
+            <Button Command="{Binding LoadSearchTaskCommand, Mode=OneTime}"
+                    Content="Поиск дела"
+                    Style="{StaticResource BtnDefault}"/>
+            <Button Command="{Binding Path=LoadTodayTaskCommand, Mode=OneTime}"
+                    Content="Дела на сегодня"
+                    Style="{StaticResource BtnDefault}"/>
+            <Button Command="{Binding LoadWeekTaskCommand, Mode=OneTime}" 
+                    Content="Дела на неделю"
+                    Style="{StaticResource BtnDefault}"/>
+            <Button Content="Дела на месяц"
+                    Style="{StaticResource BtnDefault}"/>
+            <Button Content="Настройки"
+                    Style="{StaticResource BtnDefault}"/>
+            </StackPanel>
+        <ContentPresenter Grid.Column="1" x:Name="OutputView" />
+    </Grid>
+</Window>

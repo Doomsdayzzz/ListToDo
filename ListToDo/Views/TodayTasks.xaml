@@ -1,0 +1,24 @@
+<UserControl x:Class="ListToDo.Views.TodayTasks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ListToDo"
+             mc:Ignorable="d">
+    <StackPanel VerticalAlignment="Top">
+        <TextBlock Text="Задачи на сегодня" FontSize="20" Margin="20 10" TextAlignment="Center"/>
+        <ListView x:Name="ListSearchRezult" 
+                  ItemsSource="{Binding SearchRezultTasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  Margin="15">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="    Название    " DisplayMemberBinding="{Binding NameTask}"/>
+                    <GridViewColumn Header="     Описание    " DisplayMemberBinding="{Binding DescriptionTask}"/>
+                    <GridViewColumn Header=" Дата исполнения " DisplayMemberBinding="{Binding DueDate}"/>
+                    <GridViewColumn Header=" Приоритет " DisplayMemberBinding="{Binding PriorityTask}"/>
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</UserControl>
