@@ -16,16 +16,18 @@ namespace ListToDo.ViewModels
         //public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         //Fields
+        /*
         private IMainWindowsCodeBehind _MainCodeBehind;
-        public static ObservableCollection<TaskToDo> SearchRezultTasks { get; set; } = new ObservableCollection<TaskToDo>();
-        //public static ObservableCollection<TaskToDo> SearchRezultTasks { get; set; }
+        */
+        public static ObservableCollection<TaskToDo_UI> SearchRezultTasks { get; set; } = new ObservableCollection<TaskToDo_UI>();
+        //public static ObservableCollection<TaskToDo_UI> SearchRezultTasks { get; set; }
         //ctor
-        public SearchTaskViewModel(IMainWindowsCodeBehind codeBehind)
+        /*public SearchTaskViewModel(IMainWindowsCodeBehind codeBehind)
         {
             if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
 
             _MainCodeBehind = codeBehind;
-        }
+        }*/
 
         //Properties
 
@@ -98,13 +100,13 @@ namespace ListToDo.ViewModels
         }
         private void OnSearchTask() {
             SearchRezultTasks.Clear();
-            var task = new TaskToDo {
+            var task = new TaskToDo_UI {
                 NameTask = InputNameSearchTask,
                 DescriptionTask = InputDescriptionSearchTask,
                 PriorityTask = InputSearchPriority,
                 DueDate = InputSearchDate
             };
-            IEnumerable<TaskToDo> results = App.Tasks.Where (s => {
+            IEnumerable<TaskToDo_UI> results = App.Tasks.Where (s => {
                 return s.NameTask == task.NameTask ||
                        s.DescriptionTask == task.DescriptionTask ||
                        s.PriorityTask == task.PriorityTask ||

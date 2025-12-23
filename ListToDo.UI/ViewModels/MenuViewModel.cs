@@ -10,7 +10,7 @@ namespace ListToDo.ViewModels
     public class MenuViewModel
     {
         //ctor
-        public MenuViewModel() { }
+        //public MenuViewModel() { }
         public IMainWindowsCodeBehind CodeBehind { get; set; }
         /// <summary>
         /// Переход к первой вьюшке

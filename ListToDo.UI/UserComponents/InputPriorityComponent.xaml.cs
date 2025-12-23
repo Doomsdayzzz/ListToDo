@@ -21,7 +21,7 @@ public partial class InputPriorityComponent : UserControl{
     public InputPriorityComponent() {
         InitializeComponent();
         Loaded += ((sender, args) => {
-                    LabelInput.Content = LabelText;
+                    LabelInput.Content = LabelText??"Priority Task";
                     InputPriority.ItemsSource = App.PriorityTasks.ToList();
                     InputPriority.SelectedIndex = 4;
                 }

@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using ListToDo.BLL;
 using ListToDo.Models;
 
 namespace ListToDo
@@ -29,20 +30,20 @@ namespace ListToDo
 
         }
 
-        
-        public static ObservableCollection<TaskToDo> Tasks { get; set; } = new ObservableCollection<TaskToDo>();
+        private readonly Service _service = new Service();
+        public static ObservableCollection<TaskToDo_UI> Tasks { get; set; } = new ObservableCollection<TaskToDo_UI>();
         public static ObservableCollection<int> PriorityTasks { get; set; } = new ObservableCollection<int>(){1,2,3,4,5};
         public event PropertyChangedEventHandler? PropertyChanged;
 
         void LoadTasks() {
-            var tasks = TaskToDo.Load();
+            var tasks = TaskToDo_UI.Load(_service);
             if (tasks == null) return;
             foreach (var task in tasks) {
                 Tasks.Add(task);
             }
         }
         private void Saving(object sender, EventArgs e) {
-            TaskToDo.Save(Tasks);
+            TaskToDo_UI.Save(Tasks);
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -16,14 +16,14 @@ namespace ListToDo.ViewModels
         //public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         //Fields
-        private IMainWindowsCodeBehind _MainCodeBehind;
+        /*private IMainWindowsCodeBehind _MainCodeBehind;
 
         //ctor
         public AddTaskViewModel(IMainWindowsCodeBehind codeBehind)
         {
             if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
             _MainCodeBehind = codeBehind;
-            }
+            }*/
 
         //Properties
 
@@ -93,7 +93,7 @@ namespace ListToDo.ViewModels
         private void OnAddTask() {
             //var date = InputDueDate.SelectedDate ?? DateTime.Now;
            //InputDueDate = DateTime.Now;
-            App.Tasks.Add(new TaskToDo {
+            App.Tasks.Add(new TaskToDo_UI {
                NameTask = InputNameNewTask, 
                DescriptionTask = InputDescriptionNewTask, 
                PriorityTask = InputPriority, 

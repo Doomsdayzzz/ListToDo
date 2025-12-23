@@ -25,7 +25,7 @@ namespace ListToDo.ViewModels
         }
         #region ICommand Members
 
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             if (_TargetCanExecuteMethod != null)
             {
@@ -40,9 +40,9 @@ namespace ListToDo.ViewModels
 
         // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
         // Prism commands solve this in their implementation
-        public event EventHandler CanExecuteChanged = delegate { };
+        public event EventHandler? CanExecuteChanged = delegate { };
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             if (_TargetExecuteMethod != null)
             {
@@ -74,7 +74,7 @@ namespace ListToDo.ViewModels
         }
         #region ICommand Members
 
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             if (_TargetCanExecuteMethod != null)
             {
@@ -90,9 +90,9 @@ namespace ListToDo.ViewModels
 
         // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
         // Prism commands solve this in their implementation
-        public event EventHandler CanExecuteChanged = delegate { };
+        public event EventHandler? CanExecuteChanged = delegate { };
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             if (_TargetExecuteMethod != null)
             {

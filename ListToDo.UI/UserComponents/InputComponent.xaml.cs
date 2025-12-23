@@ -4,10 +4,10 @@ using System.Windows.Controls;
 namespace ListToDo;
 
 public partial class InputComponent : UserControl{
-
+     
     public static readonly DependencyProperty LabelTextProperty = DependencyProperty.Register(
         nameof(LabelText), typeof(string), typeof(InputComponent), new PropertyMetadata(default(string)));
-
+    //обозреваемое свойство 
     public string LabelText {
         get { return (string)GetValue(LabelTextProperty); }
         set { SetValue(LabelTextProperty, value); }
