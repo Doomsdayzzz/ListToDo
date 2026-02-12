@@ -25,11 +25,10 @@ public enum ViewType
     AddTask,
     SearchTask,
     TodayTask,
-    WeekTask
+    WeekTask,
+    MonthTask,
 }
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
+
 public partial class MainWindow : Window,  IMainWindowsCodeBehind{
     public MainWindow() {
         InitializeComponent();
@@ -39,7 +38,7 @@ public partial class MainWindow : Window,  IMainWindowsCodeBehind{
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         MenuViewModel vm = new MenuViewModel(); //загрузка вьюмодел для кнопок меню
-        vm.CodeBehind = this;   //даем доступ к этому внутреннему коду ----ЗАЧЕМ???-----
+        vm.CodeBehind = this;   //даем доступ к этому внутреннему коду
         this.DataContext = vm;  //делаем MenuViewModel контекстом данных текущего главного окна
 
         LoadView(ViewType.TodayTask); //загрузка стартовой View
@@ -80,6 +79,12 @@ public partial class MainWindow : Window,  IMainWindowsCodeBehind{
                 WeekTaskViewModel vmWeek = new WeekTaskViewModel(/*this*/);
                 viewWeek.DataContext = vmWeek;
                 this.OutputView.Content = viewWeek;
+                break;
+            case ViewType.MonthTask:
+                MonthTasks viewMonth = new MonthTasks();
+                MonthTaskViewModel vmMonth = new MonthTaskViewModel(/*this*/);
+                viewMonth.DataContext = vmMonth;
+                this.OutputView.Content = viewMonth;
                 break;
         }
 

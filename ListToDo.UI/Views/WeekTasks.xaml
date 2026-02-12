@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ListToDo"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles.xaml" />
+    </UserControl.Resources>
     <StackPanel VerticalAlignment="Top">
         <TextBlock Text="Задачи на неделю" FontSize="20" Margin="20 10" TextAlignment="Center"/>
         <ListView x:Name="ListSearchRezult" 
@@ -20,5 +23,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Сохранить на диск" Command="{Binding SaveSearchTaskCommand, Mode=OneTime}"
+                Width="200" Height="30" Margin="10,20,10,0"
+                Style="{StaticResource BtnDefault}"/>
+
     </StackPanel>
 </UserControl>

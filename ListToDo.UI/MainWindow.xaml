@@ -32,6 +32,7 @@
                     Content="Дела на неделю"
                     Style="{StaticResource BtnDefault}"/>
             <Button Content="Дела на месяц"
+                    Command="{Binding LoadMonthTaskCommand, Mode=OneTime}"
                     Style="{StaticResource BtnDefault}"/>
             <Button Content="Настройки"
                     Style="{StaticResource BtnDefault}"/>

@@ -18,13 +18,21 @@ public partial class InputPriorityComponent : UserControl{
         get { return App.PriorityTasks; }
         set { App.PriorityTasks = value; }
     }*/
+    public static readonly DependencyProperty Is_CheckedPriorutyProperty = DependencyProperty.Register(
+        nameof(Is_CheckedPrioruty), typeof(bool), typeof(InputPriorityComponent), new PropertyMetadata(default(bool)));
+
+    public bool Is_CheckedPrioruty {
+        get { return (bool)GetValue(Is_CheckedPriorutyProperty); }
+        set { SetValue(Is_CheckedPriorutyProperty, value);  }
+    }
     public InputPriorityComponent() {
         InitializeComponent();
         Loaded += ((sender, args) => {
                     LabelInput.Content = LabelText??"Priority Task";
                     InputPriority.ItemsSource = App.PriorityTasks.ToList();
                     InputPriority.SelectedIndex = 4;
-                }
+                    Is_CheckedPrioruty = true;
+                    }
             );
         
     }

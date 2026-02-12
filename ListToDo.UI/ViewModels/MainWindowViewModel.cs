@@ -17,12 +17,12 @@ public class MainWindowViewModel: ViewModelBase{
     //     set => SetField(ref title, value);
     // }
 
-    /*public ObservableCollection<Task> Tasks { get; set; } = new();
+    /*public ObservableCollection<Task> ExistTasks { get; set; } = new();
     private void FillTasks(IEnumerable<Task> tasks)
     {
-        Tasks.Clear();
-        foreach (var task in Tasks) {
-            Tasks.Add(task);
+        ExistTasks.Clear();
+        foreach (var task in ExistTasks) {
+            ExistTasks.Add(task);
         }
     }*/
 

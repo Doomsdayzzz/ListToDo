@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using ListToDo.BLL;
+using MongoDB.Bson;
 
 namespace ListToDo.Models;
 
@@ -25,7 +26,7 @@ public class TaskToDo_UI {
     //     return tasks;
     // }
     public static IEnumerable<TaskToDo_UI>? Load(Service _serv) {
-        var tasksFromDb =  _serv.GetAll();
+        var tasksFromDb = _serv.GetAll();
         //List<TaskToDo_UI> taskUI = new List<TaskToDo_UI>();
         foreach (var task in tasksFromDb) {
             yield return new TaskToDo_UI() {
@@ -37,8 +38,22 @@ public class TaskToDo_UI {
         }
     }
 
-    public static void Save(IEnumerable<TaskToDo_UI> tasks, string path = "tasks.json") {
+    /*public static void Save(IEnumerable<TaskToDo_UI> tasks, string path = "tasks.json") {
         var json = JsonSerializer.Serialize(tasks);
         File.WriteAllText(path, json);
+    }*/
+    public static void Save(Service _serv, IEnumerable<TaskToDo_UI> _newTasks) {
+        var models = new List<TaskToDo_Model> { };
+        foreach (var addtask in _newTasks) {
+            models.Add(new TaskToDo_Model() {
+                Description = addtask.DescriptionTask ?? "",
+                DueDate = addtask.DueDate.ToShortDateString().Replace('.', '/'),
+                Name = addtask.NameTask ?? "",
+                Priority = addtask.PriorityTask.ToString() ?? "5",
+                
+            });
+        }
+        _serv.Add(models);
+
     }
 }

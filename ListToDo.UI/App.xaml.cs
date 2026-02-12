@@ -29,21 +29,25 @@ namespace ListToDo
             this.Exit += Saving;
 
         }
-
+        //экземпляр обращений к данным (вызов обращений к базе)
         private readonly Service _service = new Service();
-        public static ObservableCollection<TaskToDo_UI> Tasks { get; set; } = new ObservableCollection<TaskToDo_UI>();
+        //коллекция задач полученная из базы
+        public static ObservableCollection<TaskToDo_UI> ExistTasks { get; set; } = new ObservableCollection<TaskToDo_UI>();
+        //коллекция задач для добавления в базу
+        public static ObservableCollection<TaskToDo_UI> NewTasks { get; set; } = new ObservableCollection<TaskToDo_UI>();
         public static ObservableCollection<int> PriorityTasks { get; set; } = new ObservableCollection<int>(){1,2,3,4,5};
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        void LoadTasks() {
+        void  LoadTasks() {
             var tasks = TaskToDo_UI.Load(_service);
             if (tasks == null) return;
             foreach (var task in tasks) {
-                Tasks.Add(task);
+                ExistTasks.Add(task);
             }
+            
         }
         private void Saving(object sender, EventArgs e) {
-            TaskToDo_UI.Save(Tasks);
+            TaskToDo_UI.Save(_service,  NewTasks);
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

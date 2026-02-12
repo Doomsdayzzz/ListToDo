@@ -20,9 +20,11 @@ namespace ListToDo.Views
     /// </summary>
     public partial class AddTask : UserControl
     {
+        
         public AddTask()
         {
             InitializeComponent();
+            
         }
     }
 }

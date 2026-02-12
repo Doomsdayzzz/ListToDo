@@ -6,28 +6,28 @@ using Microsoft.Win32;
 
 namespace ListToDo.ViewModels;
 
-public class TodayTaskViewModel : ViewModelBase{
-    /*public TodayTaskViewModel(IMainWindowsCodeBehind codeBehind) {
-        if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
+public class MonthTaskViewModel : ViewModelBase{
+    // public WeekTaskViewModel(IMainWindowsCodeBehind codeBehind) {
+    //     if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
+    //
+    //     _MainCodeBehind = codeBehind;
+    // }
 
-        _MainCodeBehind = codeBehind;
-    }*/
-
-    public TodayTaskViewModel() {
+    public MonthTaskViewModel() {
         OnSearchTask();
     }
 
-    /*
-    private IMainWindowsCodeBehind _MainCodeBehind;
-    */
-    public static ObservableCollection<TaskToDo_UI> SearchRezultTasks { get; } = [];
+    // private IMainWindowsCodeBehind _MainCodeBehind;
+    public static ObservableCollection<TaskToDo_UI> SearchRezultTasks { get; set; } =
+        new ObservableCollection<TaskToDo_UI>();
 
     private void OnSearchTask() {
         SearchRezultTasks.Clear();
         //-----поиск в отдельном потоке-------
         Task.Run(() => {
             IEnumerable<TaskToDo_UI> results = App.ExistTasks.Where(s => {
-                return s.DueDate.DayOfYear == DateTime.Today.DayOfYear;
+                return s.DueDate.DayOfYear >= DateTime.Today.DayOfYear
+                       && s.DueDate.DayOfYear <= DateTime.Today.DayOfYear + 31;
             });
             var taskToDoUis = results.ToList();
             if (!taskToDoUis.Any()) {
@@ -37,11 +37,13 @@ public class TodayTaskViewModel : ViewModelBase{
 
             //без диспетчера ну никак(((
             foreach (var item in taskToDoUis) {
-                Application.Current.Dispatcher.Invoke(() => { SearchRezultTasks.Add(item); });
+                Application.Current.Dispatcher.Invoke(() => {
+                    SearchRezultTasks.Add(item);
+                });
             }
         });
     }
-
+    
     private RelayCommand _SaveSearchTaskCommand;
 
     public RelayCommand SaveSearchTaskCommand {
@@ -58,23 +60,20 @@ public class TodayTaskViewModel : ViewModelBase{
 
     private void OnSaveSearchTask() {
         if (SearchRezultTasks.Count == 0) {
-            MessageBox.Show($"Нет данных для сохранения", "Сохранение", MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            MessageBox.Show($"Нет данных для сохранения", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
-
         string FilePath = "";
         var saveFileDialog = new SaveFileDialog();
         if (saveFileDialog.ShowDialog() == true) {
-            FilePath = saveFileDialog.FileName + ".txt";
+            FilePath = saveFileDialog.FileName+".txt";
         }
 
         //------------ЗАПИСЬ НА ДИСК-------------
         Task.Run(() => {
             using (StreamWriter file = new StreamWriter(FilePath)) //пишем настройки в файл
             {
-                file.WriteLine(
-                    $"Дата сохранения: {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} \n");
+                file.WriteLine($"Дата сохранения: {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} \n");
                 foreach (var task in SearchRezultTasks) {
                     file.WriteLine($"Имя задачи: {task.NameTask}");
                     file.WriteLine($"Описание: {task.DescriptionTask}");
@@ -83,9 +82,8 @@ public class TodayTaskViewModel : ViewModelBase{
                     file.WriteLine("----------------------");
                 }
             }
-
             MessageBox.Show($"Данные сохранены", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
         });
     }
-}
 
+}

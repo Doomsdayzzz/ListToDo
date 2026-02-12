@@ -10,7 +10,7 @@
     </UserControl.Resources>
     <StackPanel VerticalAlignment="Top">
         <TextBlock Text="Новая задача" FontSize="20" Margin="20 10" TextAlignment="Center"/>
-        <local:InputComponent x:Name="NameNewTask" LabelText="Название" Margin="10 5" 
+        <local:InputComponent x:Name="NameNewTask" LabelText="Название" Margin="10 5"
                               InputText="{Binding Path=InputNameNewTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <local:InputComponent x:Name="DescriptionNewTask" LabelText="Описание" Margin="10 5"
                               InputText="{Binding InputDescriptionNewTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -19,6 +19,7 @@
         <local:InputPriorityComponent x:Name="NewPriority" LabelText="Приоритет" Margin="10 5"
                               PriorityTask="{Binding Path=InputPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Button Content="Добавить" Command="{Binding Path=AddTaskCommand, Mode=OneTime}"
-                Width="70" Height="20" Margin="0,20,0,0"/>
+                Width="100" Height="30" Margin="0,20,0,0"
+                Style="{StaticResource BtnDefault}"/>
     </StackPanel>
 </UserControl>

@@ -17,13 +17,12 @@ namespace ListToDo.ViewModels
 
         //Fields
         /*private IMainWindowsCodeBehind _MainCodeBehind;
-
+        */
         //ctor
-        public AddTaskViewModel(IMainWindowsCodeBehind codeBehind)
+        public AddTaskViewModel()
         {
-            if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
-            _MainCodeBehind = codeBehind;
-            }*/
+            // Visibility_=false;
+            }
 
         //Properties
 
@@ -72,6 +71,14 @@ namespace ListToDo.ViewModels
                 OnPropertyChanged(nameof(InputPriority));
             }
         }
+        // private bool _visibility;
+
+        // public bool Visibility_ {
+        //     get { return _visibility; }
+        //     set{ 
+        //         _visibility = value;
+        //         OnPropertyChanged(nameof(Visibility_));}
+        // }
         //Commands
 
         /// <summary>
@@ -93,7 +100,7 @@ namespace ListToDo.ViewModels
         private void OnAddTask() {
             //var date = InputDueDate.SelectedDate ?? DateTime.Now;
            //InputDueDate = DateTime.Now;
-            App.Tasks.Add(new TaskToDo_UI {
+            App.NewTasks.Add(new TaskToDo_UI {
                NameTask = InputNameNewTask, 
                DescriptionTask = InputDescriptionNewTask, 
                PriorityTask = InputPriority, 

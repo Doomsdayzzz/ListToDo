@@ -1,19 +1,22 @@
 <UserControl x:Class="ListToDo.InputDateComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Name="Component">
-    
+             x:Name="Component"
+             xmlns:local="clr-namespace:ListToDo">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles.xaml" />
+    </UserControl.Resources>
     <Grid>
          <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
             <Label Grid.Column="0" x:Name="LabelInput" FontSize="16" HorizontalAlignment="Right"
-                   Content="{Binding ElementName=Component, 
-                   Path=LabelText, 
-                   Mode=OneWay, 
-                   UpdateSourceTrigger=PropertyChanged}"/>
-            <DatePicker Grid.Column="1" Name="InputDatePicker" 
+                   Content="{Binding ElementName=Component, Path=LabelText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ToggleButton Grid.Column="1" Style="{StaticResource Toggle1}"
+                          IsChecked="{Binding ElementName=Component, Path=Is_CheckedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker Grid.Column="2" Name="InputDatePicker" 
                         SelectedDateFormat="Short" 
                         Margin="10 0" 
                         Height="22"

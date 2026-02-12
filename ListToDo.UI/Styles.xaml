@@ -10,7 +10,7 @@
                             Background="#d5f3f4">
                         <ContentControl Content="{TemplateBinding Property=Content}"
                                         Foreground="{TemplateBinding Property=Foreground}"
-                                        HorizontalAlignment="Left"
+                                        HorizontalAlignment="Center"
                                         VerticalAlignment="{TemplateBinding Property=VerticalContentAlignment}"
                                         Margin="15 0"
                                         FontSize="16"/> 
@@ -44,8 +44,49 @@
         <Setter Property="Foreground" Value="LightSeaGreen"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
+         
+    
     <!--Text1-->
     <Style x:Key="Text1" TargetType="TextBlock">
     <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <!--tBox1-->
+    <Style x:Key="tBox1" TargetType="TextBoxBase">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border CornerRadius="3" BorderBrush="CornflowerBlue" BorderThickness="1"></Border>
+                </ControlTemplate>
+                
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Toggle1-->
+    <Style x:Key="Toggle1" TargetType="ToggleButton">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="B1" 
+                            Background="LightGray" 
+                            CornerRadius="6"
+                            Padding="2">
+                        <Border x:Name="B2" 
+                                Background="White" 
+                                Width="{TemplateBinding Height}"
+                                CornerRadius="6"
+                                HorizontalAlignment="Left">
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="B1" Property="Background" Value="CornflowerBlue"/>
+                            <Setter TargetName="B2" Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

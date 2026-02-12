@@ -15,8 +15,8 @@ public class Service{
         return _operations.GetAll();
     }
 
-    public void Add(TaskToDo_Model task) {
-        _operations.Insert(task);
+    public void Add(IEnumerable<TaskToDo_Model> _addTasks) {
+        _operations.Insert(_addTasks);
     }
 
     public void Update(TaskToDo_Model task) {

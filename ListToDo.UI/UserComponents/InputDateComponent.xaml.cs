@@ -19,16 +19,20 @@ public partial class InputDateComponent : UserControl{
         get { return (string)GetValue(LabelTextProperty) ?? string.Empty; }
         set{ SetValue(LabelTextProperty, value); }
     }
+    public static readonly DependencyProperty Is_CheckedDateProperty = DependencyProperty.Register(
+        nameof(Is_CheckedDate), typeof(bool), typeof(InputDateComponent), new PropertyMetadata(default(bool)));
 
+    public bool Is_CheckedDate {
+        get { return (bool)GetValue(Is_CheckedDateProperty); }
+        set { SetValue(Is_CheckedDateProperty, value);  }
+    }
     //public DatePicker DatePicker{get;set;}
     public InputDateComponent() {
         InitializeComponent();
         //DateTask = new DatePicker();
         Loaded += (sender, args) => {
             DateTask = DateTime.Now;
-            //DateTask.DisplayDate = DateTime.Now;
-            //InputDatePicker=DateTask;
-            //LabelInput.Content = LabelText;
+            Is_CheckedDate = true;
         };
     }
 

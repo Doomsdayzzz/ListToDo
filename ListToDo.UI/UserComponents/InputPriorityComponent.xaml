@@ -6,14 +6,20 @@
              xmlns:local="clr-namespace:ListToDo"
              mc:Ignorable="d"
              x:Name="Component">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles.xaml" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" x:Name="LabelInput" Target="InputPriority" FontSize="16" HorizontalAlignment="Right"/>
         <!--<TextBox Grid.Column="1" x:Name="Input" Margin="10 0" Height="20"/>-->
-        <ComboBox Grid.Column="1" x:Name="InputPriority"  Margin="10 0" Height="20"
+        <ToggleButton Grid.Column="1" Style="{StaticResource Toggle1}"
+                      IsChecked="{Binding Is_CheckedTogglePrior, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox Grid.Column="2" x:Name="InputPriority"  Margin="10 0" Height="20"
                   SelectionChanged="Input_OnSelectionChanged"
                   SelectedItem="{Binding ElementName=Component, 
                   Path=PriorityTask, 
